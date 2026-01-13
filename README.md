@@ -16,7 +16,7 @@ Usage
 
     Run the command: python html_merger.py
 
-    Find the consolidated result in tum_kaynaklar_birlesik.html.
+    Find the consolidated result in merged_output.html.
 
 Technical Details
 
