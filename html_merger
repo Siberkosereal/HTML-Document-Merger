@@ -1,0 +1,32 @@
+import os
+
+def merge_html_files():
+    output_file = "merged_output.html"
+    # Exclude the output file itself if it already exists
+    files = [f for f in os.listdir('.') if f.endswith('.html') and f != output_file]
+
+    if not files:
+        print("No HTML files found to merge.")
+        return
+
+    print(f"Merging {len(files)} files...")
+
+    with open(output_file, "w", encoding="utf-8") as outfile:
+        outfile.write("<html><head><meta charset='UTF-8'></head><body>\n")
+        outfile.write("<h1>Merged HTML Resources Database</h1>\n")
+        
+        for filename in files:
+            print(f"Adding: {filename}")
+            try:
+                with open(filename, "r", encoding="utf-8", errors="ignore") as infile:
+                    outfile.write(f"\n<hr><h2>Source File: {filename}</h2>\n")
+                    outfile.write(infile.read())
+            except Exception as e:
+                print(f"Error: Could not read {filename}. {e}")
+                
+        outfile.write("\n</body></html>")
+
+    print(f"\nSuccess! {len(files)} files merged into '{output_file}'.")
+
+if __name__ == "__main__":
+    merge_html_files()
